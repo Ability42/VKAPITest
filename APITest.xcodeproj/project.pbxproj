@@ -15,6 +15,7 @@
 		785546361E33D30000F64547 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 785546341E33D30000F64547 /* LaunchScreen.storyboard */; };
 		785546411E33D30000F64547 /* APITestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 785546401E33D30000F64547 /* APITestTests.m */; };
 		7855464C1E33D30000F64547 /* APITestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855464B1E33D30000F64547 /* APITestUITests.m */; };
+		7855465B1E33D31C00F64547 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855465A1E33D31C00F64547 /* ServerManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		785546471E33D30000F64547 /* APITestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APITestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7855464B1E33D30000F64547 /* APITestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APITestUITests.m; sourceTree = "<group>"; };
 		7855464D1E33D30000F64547 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		785546591E33D31C00F64547 /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
+		7855465A1E33D31C00F64547 /* ServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,8 @@
 				7855462A1E33D30000F64547 /* AppDelegate.m */,
 				7855462C1E33D30000F64547 /* ViewController.h */,
 				7855462D1E33D30000F64547 /* ViewController.m */,
+				785546591E33D31C00F64547 /* ServerManager.h */,
+				7855465A1E33D31C00F64547 /* ServerManager.m */,
 				7855462F1E33D30000F64547 /* Main.storyboard */,
 				785546321E33D30000F64547 /* Assets.xcassets */,
 				785546341E33D30000F64547 /* LaunchScreen.storyboard */,
@@ -207,7 +212,6 @@
 				TargetAttributes = {
 					785546221E33D30000F64547 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZW9JWEU2NM;
 						ProvisioningStyle = Automatic;
 					};
 					7855463B1E33D30000F64547 = {
@@ -276,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7855465B1E33D31C00F64547 /* ServerManager.m in Sources */,
 				7855462E1E33D30000F64547 /* ViewController.m in Sources */,
 				7855462B1E33D30000F64547 /* AppDelegate.m in Sources */,
 				785546281E33D30000F64547 /* main.m in Sources */,
@@ -425,7 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZW9JWEU2NM;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = APITest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SP.APITest;
@@ -437,7 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZW9JWEU2NM;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = APITest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SP.APITest;
