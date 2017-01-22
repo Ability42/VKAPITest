@@ -47,13 +47,24 @@
                             nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
     [manager GET:URLString parameters:params progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-             NSLog(@"RESPONSE_OBJECT: %@", responseObject);
+         success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary* responseObject) {
+             NSLog(@"JSON: %@", responseObject);
              // may store responseObject
+             NSArray *friendsArray = [responseObject objectForKey:@"response"];
+             
+             if (success) {
+                 success(friendsArray);
+             }
              
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
              NSLog(@"ERROR: %@", [error localizedDescription]);
+             
+             if (failure) {
+                 failure(error, task.state);
+             }
+             
          }];
     
 }

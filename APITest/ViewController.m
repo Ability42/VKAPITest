@@ -9,15 +9,31 @@
 #import "ViewController.h"
 #import "ServerManager.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSMutableArray *friendsArray;
+@property (strong, nonatomic) UITableView *tableView;
 
 @end
 
 @implementation ViewController
 
 static NSInteger friendsInRequest = 5;
+
+#pragma mark - VC lifecycle
+
+- (void)loadView {
+    [super loadView];
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    
+    [self.view addSubview:tableView];
+    self.tableView = tableView;
+    
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -57,6 +73,26 @@ static NSInteger friendsInRequest = 5;
     }];
 }
 
+
+#pragma mark - UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"friendCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
+                                      reuseIdentifier:identifier];
+    }
+    
+    NSDictionary *friendsDict = [self.friendsArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"@% @%", [friendsDict objectForKey:@"first_name"], [friendsDict objectForKey:@"last_name"]];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.friendsArray count];
+}
 @end
 
 
