@@ -7,10 +7,10 @@
 //
 
 #import "ServerManager.h"
+#import <AFNetworking/AFNetworking.h>
 
 @implementation ServerManager
 
-// custom singelton
 + (ServerManager *)sharedManager {
     static ServerManager *manager = nil;
     
@@ -26,8 +26,35 @@
                         count:(NSInteger)count
                     onSuccess:(void (^)(NSArray *))success
                     onFailure:(void (^)(NSError *, NSInteger))failure {
+    /*** to call a VK API method you need to make a POST or GET method to specify URL by passing HTTPS protocol ***/
+
     
+    // @"friends.get"
+    // @"user_ids"
+    // @"fields"
+    // @"name_case "
     
+    /***** Request Serialization *****/
+    
+    NSString *URLString = @"https://api.vk.com/method/friends.get";
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                            @"138593392", @"user_id",
+                            @"hints", @"order",
+                            @(count), @"count",
+                            @(offset), @"offset",
+                            @"photo_100", @"fields",
+                            @"nom", @"name_case",
+                            nil];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager GET:URLString parameters:params progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+             NSLog(@"RESPONSE_OBJECT: %@", responseObject);
+             // may store responseObject
+             
+         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+             NSLog(@"ERROR: %@", [error localizedDescription]);
+         }];
     
 }
 @end
