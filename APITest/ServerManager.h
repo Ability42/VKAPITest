@@ -12,4 +12,10 @@
 
 + (ServerManager *)sharedManager;
 
+- (void) getFriendsWithOffset:(NSInteger) offset
+                        count:(NSInteger) count
+                    onSuccess:(void(^)(NSArray* friends)) success
+                    onFailure:(void(^)(NSError* error, NSInteger statusCode)) failure;
+
+
 @end

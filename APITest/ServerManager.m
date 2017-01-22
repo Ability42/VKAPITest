@@ -10,7 +10,6 @@
 
 @implementation ServerManager
 
-
 // custom singelton
 + (ServerManager *)sharedManager {
     static ServerManager *manager = nil;
@@ -23,5 +22,12 @@
     return manager;
 }
 
-
+- (void) getFriendsWithOffset:(NSInteger)offset
+                        count:(NSInteger)count
+                    onSuccess:(void (^)(NSArray *))success
+                    onFailure:(void (^)(NSError *, NSInteger))failure {
+    
+    
+    
+}
 @end
