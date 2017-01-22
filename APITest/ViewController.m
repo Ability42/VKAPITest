@@ -18,7 +18,7 @@
 
 @implementation ViewController
 
-static NSInteger friendsInRequest = 5;
+static NSInteger friendsInRequest = 20;
 
 #pragma mark - VC lifecycle
 
@@ -52,14 +52,13 @@ static NSInteger friendsInRequest = 5;
 #pragma mark - API
 
 - (void) getFriendsFromServer {
-    [[ServerManager sharedManager] getFriendsWithOffset:[self.friendsArray count]
-                                                  count:friendsInRequest
+    [[ServerManager sharedManager] getFriendsWithOffset:[self.friendsArray count] count:friendsInRequest
                                               onSuccess:^(NSArray *friends) {
+                                                  
                                                   [self.friendsArray addObjectsFromArray:friends];
                                                   
-                                                  [self.tableView reloadData];
                                                   NSMutableArray *newPaths = [NSMutableArray array];
-                                                  for (int i = (int)[self.friendsArray count] - (int)[friends count]; i < (int)[self.friendsArray count]; i++) {
+                                                  for (int i = (int)[self.friendsArray count] - (int)[friends count]; i <  [self.friendsArray count]; i++) {
                                                       [newPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
                                                   }
                                                   
@@ -67,6 +66,7 @@ static NSInteger friendsInRequest = 5;
                                                   [self.tableView insertRowsAtIndexPaths:newPaths
                                                                         withRowAnimation:UITableViewRowAnimationTop];
                                                   
+                                                  [self.tableView endUpdates];
     }
                                               onFailure:^(NSError *error, NSInteger statusCode) {
         NSLog(@"Error: %@, Status Code: %ld",[error localizedDescription], statusCode);
@@ -78,33 +78,61 @@ static NSInteger friendsInRequest = 5;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *identifier = @"friendCell";
+    static NSString *loadID = @"⬇️ LOAD MORE ⬇️";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:identifier];
     }
     
-    NSDictionary *friendsDict = [self.friendsArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"@% @%", [friendsDict objectForKey:@"first_name"], [friendsDict objectForKey:@"last_name"]];
+    if (indexPath.row == [self.friendsArray count]) {
+        cell.textLabel.text = loadID;
+        // TODO: must fix bug with incorrect textAlligment in friends list
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        cell.imageView.image = nil;
+        
+    } else {
+    
+        NSDictionary *friendsDict = [self.friendsArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",
+                               [friendsDict objectForKey:@"first_name"],
+                               [friendsDict objectForKey:@"last_name"]];
+    }
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.friendsArray count];
+    return [self.friendsArray count] + 1;
 }
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == [self.friendsArray count]) {
+        [self getFriendsFromServer];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
