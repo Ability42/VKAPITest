@@ -6,8 +6,12 @@
 //  Copyright © 2017 Stepan Paholyk. All rights reserved.
 //
 
+
+
 #import "ViewController.h"
 #import "ServerManager.h"
+#import "User.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -48,6 +52,7 @@ static NSInteger friendsInRequest = 20;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - API
 
@@ -90,15 +95,22 @@ static NSInteger friendsInRequest = 20;
     if (indexPath.row == [self.friendsArray count]) {
         cell.textLabel.text = loadID;
         // TODO: must fix bug with incorrect textAlligment in friends list
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        // cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.imageView.image = nil;
         
     } else {
     
-        NSDictionary *friendsDict = [self.friendsArray objectAtIndex:indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",
-                               [friendsDict objectForKey:@"first_name"],
-                               [friendsDict objectForKey:@"last_name"]];
+        User *friend = [self.friendsArray objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", friend.firstName, friend.lastName];
+        
+        // vk avatar  imageView
+        UIImageView *maskImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+        
+        
+        
+        cell.imageView.layer.cornerRadius = 20;
+        [cell.imageView setImageWithURL:friend.imageURL];
+        
     }
     return cell;
 }

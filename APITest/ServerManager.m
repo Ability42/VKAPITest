@@ -8,6 +8,7 @@
 
 #import "ServerManager.h"
 #import <AFNetworking/AFNetworking.h>
+#import "User.h"
 
 @implementation ServerManager
 
@@ -54,8 +55,15 @@
              // may store responseObject
              NSArray *friendsArray = [responseObject objectForKey:@"response"];
              
+             NSMutableArray *objectsArray = [NSMutableArray array];
+             
+             for (NSDictionary *dict in friendsArray) {
+                 User *user = [[User alloc] initWithServerResponse:dict];
+                 [objectsArray addObject:user];
+             }
+             
              if (success) {
-                 success(friendsArray);
+                 success(objectsArray);
              }
              
          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

@@ -10,6 +10,8 @@
 
 @interface ViewController : UIViewController
 
+- (UIImageView*) setRoundenViewForImageWithURL:(NSURL*)imageURL;
+
 
 
 @end

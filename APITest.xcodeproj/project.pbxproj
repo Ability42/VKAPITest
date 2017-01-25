@@ -18,6 +18,8 @@
 		7855465B1E33D31C00F64547 /* ServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7855465A1E33D31C00F64547 /* ServerManager.m */; };
 		7855465D1E3504B100F64547 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7855465C1E3504B100F64547 /* AFNetworking.framework */; };
 		7855465E1E3504B100F64547 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7855465C1E3504B100F64547 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		787AA6511E364B4200F9A967 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 787AA6501E364B4200F9A967 /* User.m */; };
+		78A73AE51E37997D00C9050B /* FriendListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A73AE41E37997D00C9050B /* FriendListCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,10 @@
 		785546591E33D31C00F64547 /* ServerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerManager.h; sourceTree = "<group>"; };
 		7855465A1E33D31C00F64547 /* ServerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerManager.m; sourceTree = "<group>"; };
 		7855465C1E3504B100F64547 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
+		787AA64F1E364B4200F9A967 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		787AA6501E364B4200F9A967 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		78A73AE31E37997D00C9050B /* FriendListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendListCell.h; sourceTree = "<group>"; };
+		78A73AE41E37997D00C9050B /* FriendListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendListCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,10 @@
 				785546591E33D31C00F64547 /* ServerManager.h */,
 				7855465A1E33D31C00F64547 /* ServerManager.m */,
 				7855462F1E33D30000F64547 /* Main.storyboard */,
+				787AA64F1E364B4200F9A967 /* User.h */,
+				787AA6501E364B4200F9A967 /* User.m */,
+				78A73AE31E37997D00C9050B /* FriendListCell.h */,
+				78A73AE41E37997D00C9050B /* FriendListCell.m */,
 				785546321E33D30000F64547 /* Assets.xcassets */,
 				785546341E33D30000F64547 /* LaunchScreen.storyboard */,
 				785546371E33D30000F64547 /* Info.plist */,
@@ -300,10 +310,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787AA6511E364B4200F9A967 /* User.m in Sources */,
 				7855465B1E33D31C00F64547 /* ServerManager.m in Sources */,
 				7855462E1E33D30000F64547 /* ViewController.m in Sources */,
 				7855462B1E33D30000F64547 /* AppDelegate.m in Sources */,
 				785546281E33D30000F64547 /* main.m in Sources */,
+				78A73AE51E37997D00C9050B /* FriendListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
