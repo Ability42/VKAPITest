@@ -96,20 +96,24 @@ static NSInteger friendsInRequest = 20;
         cell.textLabel.text = loadID;
         // TODO: must fix bug with incorrect textAlligment in friends list
         // cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.imageView.image = nil;
+        //cell.imageView.image = nil;
         
     } else {
     
         User *friend = [self.friendsArray objectAtIndex:indexPath.row];
         cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", friend.firstName, friend.lastName];
         
-        // vk avatar  imageView
-        UIImageView *maskImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+        CALayer *cellLayerImage = cell.imageView.layer;
         
+        [cellLayerImage setCornerRadius:15];
+        [cellLayerImage setMasksToBounds:YES];
+        [cellLayerImage setBorderWidth:1.25];
+
         
-        
-        cell.imageView.layer.cornerRadius = 20;
         [cell.imageView setImageWithURL:friend.imageURL];
+
+        
+        
         
     }
     return cell;
